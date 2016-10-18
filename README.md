@@ -1,5 +1,6 @@
 # PH5eventXML
 PH5eventXML is a format to represent active source event information.
+Official release can be found at: https://www.passcal.nmt.edu/~dhess/PH5EventXML/
 
 
 ## Change Procedure
