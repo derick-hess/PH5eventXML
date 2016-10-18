@@ -1,0 +1,111 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PH5eventXML">
+    <xs:complexType>
+      <xs:annotation>
+       <xs:documentation>Top Level of PH5eventXML. Required fields are one or more network containers</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="Network" maxOccurs="unbounded" minOccurs="1">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:documentation>Network represents a single PH5 experiment. All event metadata for a given experiment are contained with this element. 
+                                 Network attributes are report_num(also known as assembled if) and network code</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element type="xs:string" name="Description" maxOccurs="1" minOccurs="0"/>
+              <xs:element name="ShotLine" maxOccurs="unbounded" minOccurs="1">
+                <xs:complexType>
+                  <xs:annotation>
+                    <xs:documentation>ShotLine represents a group of events in a PH5 experiment. A ShotLine must contain 1 or more shots </xs:documentation>
+                  </xs:annotation>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Description" maxOccurs="1" minOccurs="0"/> 
+                    <xs:element name="Shot" maxOccurs="unbounded" minOccurs="1">
+                      <xs:complexType>
+                        <xs:annotation>
+                          <xs:documentation>Shot represents a single even within a ShotLine and Network. A Shot contains relevent metadata for the event. </xs:documentation>
+                        </xs:annotation>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Description" maxOccurs="1" minOccurs="0"/>
+                          <xs:element name="Latitude"  maxOccurs="1" minOccurs="1">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:float">
+                                  <xs:attribute type="xs:string" name="unit" use="required"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Longitude"  maxOccurs="1" minOccurs="1">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:float">
+                                  <xs:attribute type="xs:string" name="unit" use="required"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Elevation"  maxOccurs="1" minOccurs="1">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:float">
+                                  <xs:attribute type="xs:string" name="unit" use="required"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Magnitude"  maxOccurs="1" minOccurs="1">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:float">
+                                  <xs:attribute type="xs:string" name="unit" use="required"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Depth"  maxOccurs="1" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:float">
+                                  <xs:attribute type="xs:string" name="unit" use="required"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ToC"  maxOccurs="1" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:float">
+                                  <xs:attribute type="xs:string" name="unit" use="required"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="BoC"  maxOccurs="1" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:float">
+                                  <xs:attribute type="xs:string" name="unit" use="required"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:short" name="code" use="required"/>
+                        <xs:attribute type="xs:dateTime" name="StartTime" use="required"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="code"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="reportnum" use="required"/>
+            <xs:attribute type="xs:string" name="code" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:float" name="schemaVersion"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
